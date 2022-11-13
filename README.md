@@ -7,6 +7,10 @@ Your mum has left you alone! Now is your best chance to commit violent and horri
 
 ## Collaborators
 CodeLineNull - 3D Asset Model Designer
+
 Caitlin - 2D Asset & Texture Desiner
+
 SwillMith16 - C# & Unity Engineer
+
 Freddy - Audio Engineer
+
