@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-
+    // explosion related variables
     public float delay = 3f;
     private float countdown;
     private bool hasExploded = false;
     public GameObject explosionEffect;
     public float explosionForce;
     public float damageRadius;
-    public float destroyDelayTime;
-    private float effectCycleTime = 1f;
 
-    // Start is called before the first frame update
+    // post-explosion related variables
+    public float destroyObjectDelay;
+    public float destroyEffectDelay;
+
     void Start()
     {
         countdown = delay;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // start countdown
@@ -38,32 +38,44 @@ public class Grenade : MonoBehaviour
     private void Explode()
     {
         // Show explosion effect
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        GameObject particleEffect = Instantiate(explosionEffect, transform.position, transform.rotation);
 
         //Get nearby objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
         foreach (Collider nearbyCollider in colliders)
         {
-            // damage objects
+            // apply explosion force to objects
             Rigidbody rb = nearbyCollider.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
             }
         }
-        // destroy grenade
-        Destroy(gameObject);
-        Debug.Log("Grenade destroyed");
+        // make grenade disppear
+        gameObject.GetComponent<Renderer>().enabled = false;
 
         // destroy nearby objects after a delay
-        StartCoroutine(DelayObjectDestroy(colliders));
-        Debug.Log("Coroutine called");
+        StartCoroutine(DelayObjectDestroy(colliders, destroyObjectDelay));
 
         // destroy explosion effect after a delay
-        StartCoroutine(DelayEffectDestroy());
+        StartCoroutine(DelayEffectDestroy(particleEffect, destroyEffectDelay));
+    }
 
+    IEnumerator DelayObjectDestroy(Collider[] colliders, float delay)
+    {
+        yield return new WaitForSeconds(delay);
 
-        //DestroyNearbyObject(colliders);
+        // destroy damaged buildings and grenade object
+        DestroyNearbyObject(colliders);
+        Destroy(gameObject);
+    }
+
+    IEnumerator DelayEffectDestroy(GameObject effectObject, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // destroy damaged buildings and grenade object
+        Destroy(effectObject);
     }
 
     private void DestroyNearbyObject(Collider[] colliders)
@@ -75,21 +87,9 @@ public class Grenade : MonoBehaviour
             {
                 GameObject nearbyObject = nearbyCollider.gameObject;
                 Destroy(nearbyObject);
-            }            
+            }
         }
     }
-
-    IEnumerator DelayObjectDestroy(Collider[] colliders)
-    {
-        Debug.Log("Coroutine entered");
-        yield return new WaitForSeconds(3);
-        Debug.Log("Objects destroyed");
-        DestroyNearbyObject(colliders);
-    }
-
-    IEnumerator DelayEffectDestroy()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(explosionEffect);
-    }
 }
+
+
