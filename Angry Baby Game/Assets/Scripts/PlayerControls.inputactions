@@ -31,21 +31,12 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Aim",
-                    "type": "Button",
-                    "id": "90c4854e-6725-485b-98d6-8f13ee05d30f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "WASD",
-                    "id": "df7a25bf-bec6-46cb-894a-ee81ff3b538c",
+                    "id": "4e89da13-6056-4833-b58d-66a02dcdfe90",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -56,8 +47,41 @@
                 },
                 {
                     "name": "up",
-                    "id": "b71fa751-9275-469a-88b6-f8c44d35ac52",
+                    "id": "0bf9f969-e688-4336-b6a2-689bc6274414",
                     "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "21016f85-6fd0-4301-a806-cfdc2549b620",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "50ff6548-c9fa-4967-a4d2-f7bea1d1ce16",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "cae627bb-43cf-4dd5-9cb3-1468bea046b7",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -84,17 +108,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5be0f655-f603-47f7-ad7d-67c221368634",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

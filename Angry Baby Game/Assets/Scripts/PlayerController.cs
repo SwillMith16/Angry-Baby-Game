@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform cameraTransform;
+    public Transform bombSpawnPos;
+
+    public GameObject teddyBombPrefab;
 
     private InputAction moveAction;
-    public bool isMoving = false;
     public Animator animator;
 
 
-    private void Start()
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // keep player grounded
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -50,17 +53,19 @@ public class PlayerController : MonoBehaviour
 
         if (move != Vector3.zero)
         {
-            isMoving = true;
+            animator.SetBool("isMoving", true);
             gameObject.transform.forward = move;
-            //animator.Play("Walk");
         }
         else
         {
-            //animator.Play("Idle");
+            animator.SetBool("isMoving", false);
         }
 
         // rotate to match camera direction
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }
