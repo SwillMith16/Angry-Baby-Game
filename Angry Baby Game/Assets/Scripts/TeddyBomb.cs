@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Grenade : MonoBehaviour
+public class TeddyBomb : MonoBehaviour
 {
     // explosion related variables
     public float delay = 3f;
@@ -65,16 +65,15 @@ public class Grenade : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // destroy damaged buildings and grenade object
+        // destroy damaged buildings
         DestroyNearbyObject(colliders);
-        Destroy(gameObject);
     }
 
     IEnumerator DelayEffectDestroy(GameObject effectObject, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // destroy damaged buildings and grenade object
+        // destroy particle effect object
         Destroy(effectObject);
     }
 
@@ -86,7 +85,10 @@ public class Grenade : MonoBehaviour
             if (rb != null)
             {
                 GameObject nearbyObject = nearbyCollider.gameObject;
-                Destroy(nearbyObject);
+                if (!nearbyObject.CompareTag("Player"))
+                {
+                    Destroy(nearbyObject);
+                }                
             }
         }
     }
