@@ -85,7 +85,10 @@ public class TeddyBomb : MonoBehaviour
             if (rb != null)
             {
                 GameObject nearbyObject = nearbyCollider.gameObject;
-                Destroy(nearbyObject);
+                if (!nearbyObject.CompareTag("Player"))
+                {
+                    Destroy(nearbyObject);
+                }                
             }
         }
     }

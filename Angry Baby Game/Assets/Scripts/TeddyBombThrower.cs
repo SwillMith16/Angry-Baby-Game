@@ -6,8 +6,8 @@ public class TeddyBombThrower : MonoBehaviour
 {
     public float throwForce = 40f;
     public GameObject teddyBombPrefab;
+    public Vector3 bombOffset;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,11 +20,11 @@ public class TeddyBombThrower : MonoBehaviour
     void ThrowGrenade()
     {
         // instantiate bomb object
-        GameObject teddyBomb = Instantiate(teddyBombPrefab, transform.position + new Vector3(-5, 10, 0), transform.rotation);
+        GameObject teddyBomb = Instantiate(teddyBombPrefab, transform.position + bombOffset, transform.rotation);
 
         // add throwing force to bomb
         Rigidbody rb = teddyBomb.GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(-1f * throwForce, 1f, 0f), ForceMode.VelocityChange);
+        rb.AddForce(new Vector3(0f, 1f, 1f * throwForce), ForceMode.VelocityChange);
 
         // after a delay, destroy the bomb object
         StartCoroutine(DestroyTeddyBomb(teddyBomb));
