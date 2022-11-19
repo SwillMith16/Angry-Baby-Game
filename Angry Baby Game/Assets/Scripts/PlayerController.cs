@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform cameraTransform;
-    public Transform bombSpawnPos;
-
-    public GameObject teddyBombPrefab;
 
     private InputAction moveAction;
     public Animator animator;
