@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject HUD;
 
     // Update is called once per frame
     void Update()
@@ -27,8 +28,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        // close pause menu
+        // close pause menu, show HUD
         pauseMenuUI.SetActive(false);
+        HUD.SetActive(true);
 
         // unfreeze the game
         Time.timeScale = 1f;
@@ -39,8 +41,9 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
-        // open pause menu
+        // open pause menu, hide HUD
         pauseMenuUI.SetActive(true);
+        HUD.SetActive(true);
 
         // freeze the game
         Time.timeScale = 0f;

@@ -75,6 +75,10 @@ public class TeddyBomb : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
             }
         }
+
+        // increment score for each building damaged
+        ScoreTracker.scoreCount += colliders.Length;
+
         // make bomb disppear
         gameObject.GetComponent<Renderer>().enabled = false;
 
