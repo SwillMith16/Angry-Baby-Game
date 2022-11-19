@@ -310,6 +310,8 @@ MonoBehaviour:
   damageRadius: 7
   destroyObjectDelay: 2
   destroyEffectDelay: 1.5
+  hissingFuse: {fileID: 8300000, guid: 0f02871c71f84ef46a0440aa61b13c88, type: 3}
+  explosionSound: {fileID: 8300000, guid: afb6f4ed0424b194b91d30b09b12f09b, type: 3}
 --- !u!82 &3155704143960104259
 AudioSource:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class TeddyBomb : MonoBehaviour
     public float delay = 3f;
     private float countdown;
     private bool hasExploded = false;
+
     public GameObject explosionEffect;
     public float explosionForce;
     public float damageRadius;
@@ -18,10 +19,17 @@ public class TeddyBomb : MonoBehaviour
     public float destroyEffectDelay;
 
     private AudioSource audioData;
+    public AudioClip hissingFuse;
+    public AudioClip explosionSound;
 
     void Start()
     {
+        // get AudioSource component and play hissing sound
         audioData = GetComponent<AudioSource>();
+        audioData.clip = hissingFuse;
+        audioData.Play();
+
+        // start countdown timer
         countdown = delay;
     }
 
@@ -36,6 +44,15 @@ public class TeddyBomb : MonoBehaviour
             Explode();
             hasExploded = true;
         }
+
+        if (PauseMenu.isPaused)
+        {
+            audioData.Pause();
+        }
+        else
+        {
+            audioData.UnPause();
+        }
     }
 
     private void Explode()
@@ -44,7 +61,8 @@ public class TeddyBomb : MonoBehaviour
         GameObject particleEffect = Instantiate(explosionEffect, transform.position, transform.rotation);
 
         // play explosion sound
-        audioData.Play(0);
+        audioData.clip = explosionSound;
+        audioData.Play();
 
         //Get nearby objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
