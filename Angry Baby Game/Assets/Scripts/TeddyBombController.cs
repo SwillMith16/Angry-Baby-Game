@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class TeddyBombController : MonoBehaviour
 {
     public float throwForce = 15f;
     public GameObject teddyBombPrefab;
-    //public Vector3 bombOffset;
     public Transform bombSpawnPos;
 
     private Transform cameraTransform;
@@ -17,11 +17,14 @@ public class TeddyBombController : MonoBehaviour
     public bool throwEnabled;
     private float throwDelay = 5f;
 
+    private AudioSource audioData;
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
+        audioData = GetComponent<AudioSource>();
         throwEnabled = true;
     }
 
@@ -30,8 +33,8 @@ public class TeddyBombController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && throwEnabled)
         {
             animator.SetBool("throw", true);
-            StartCoroutine(delayThrowBomb());
-            StartCoroutine(throwCooldown());
+            StartCoroutine(DelayThrowBomb());
+            StartCoroutine(ThrowCooldown());
         }
         else
         {
@@ -54,13 +57,14 @@ public class TeddyBombController : MonoBehaviour
 
             Rigidbody rb = teddyBomb.GetComponent<Rigidbody>();
             rb.AddForce(new Vector3(throwDirection.x * 15, 1f, throwDirection.z * 15), ForceMode.VelocityChange);
+            audioData.Play(0);
 
             // after a delay, destroy the bomb object
             StartCoroutine(DestroyTeddyBomb(teddyBomb));
         }
     }
 
-    IEnumerator delayThrowBomb()
+    IEnumerator DelayThrowBomb()
     {
         yield return new WaitForSeconds(0.8f);
         ThrowBomb();
@@ -72,7 +76,7 @@ public class TeddyBombController : MonoBehaviour
         Destroy(teddyBomb);
     }
 
-    IEnumerator throwCooldown()
+    IEnumerator ThrowCooldown()
     {
         throwEnabled = false;
         yield return new WaitForSeconds(throwDelay);

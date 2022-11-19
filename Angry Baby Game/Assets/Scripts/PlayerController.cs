@@ -64,5 +64,9 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.rotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+        }
     }
 }
