@@ -46,7 +46,7 @@ public class TeddyBombController : MonoBehaviour
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
         {
             // get target position and direction towards it
-            Vector3 targetPosition = hit.transform.position;
+            Vector3 targetPosition = hit.point;
             Vector3 throwDirection = (targetPosition - bombSpawnPos.position).normalized;
 
             // instaniate bomb and add force to it's rigidbody
