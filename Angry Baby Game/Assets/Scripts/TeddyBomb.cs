@@ -17,8 +17,11 @@ public class TeddyBomb : MonoBehaviour
     public float destroyObjectDelay;
     public float destroyEffectDelay;
 
+    private AudioSource audioData;
+
     void Start()
     {
+        audioData = GetComponent<AudioSource>();
         countdown = delay;
     }
 
@@ -40,6 +43,9 @@ public class TeddyBomb : MonoBehaviour
         // Show explosion effect
         GameObject particleEffect = Instantiate(explosionEffect, transform.position, transform.rotation);
 
+        // play explosion sound
+        audioData.Play(0);
+
         //Get nearby objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
         foreach (Collider nearbyCollider in colliders)
@@ -51,7 +57,7 @@ public class TeddyBomb : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
             }
         }
-        // make grenade disppear
+        // make bomb disppear
         gameObject.GetComponent<Renderer>().enabled = false;
 
         // destroy nearby objects after a delay
