@@ -14,21 +14,24 @@ public class TeddyBombController : MonoBehaviour
     private Transform cameraTransform;
     private Animator animator;
 
-    private PlayerInput playerInput;
+    public bool throwEnabled;
+    private float throwDelay = 5f;
 
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         cameraTransform = Camera.main.transform;
+        throwEnabled = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && throwEnabled)
         {
             animator.SetBool("throw", true);
             StartCoroutine(delayThrowBomb());
+            StartCoroutine(throwCooldown());
         }
         else
         {
@@ -67,5 +70,12 @@ public class TeddyBombController : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         Destroy(teddyBomb);
+    }
+
+    IEnumerator throwCooldown()
+    {
+        throwEnabled = false;
+        yield return new WaitForSeconds(throwDelay);
+        throwEnabled = true;
     }
 }
