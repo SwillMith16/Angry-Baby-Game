@@ -18538,7 +18538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fccac3fdf7ad7f4eb1d1dc01a943195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLengthSeconds: 10
+  gameLengthSeconds: 60
   timerObject: {fileID: 252468800}
 --- !u!4 &1065736881
 Transform:

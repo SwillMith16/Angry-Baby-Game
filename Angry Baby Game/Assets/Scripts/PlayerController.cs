@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();

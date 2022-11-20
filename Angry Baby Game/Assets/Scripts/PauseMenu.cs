@@ -32,6 +32,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         HUD.SetActive(true);
 
+        // lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         // unfreeze the game
         Time.timeScale = 1f;
 
@@ -45,6 +49,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         HUD.SetActive(true);
 
+        // unlock cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         // freeze the game
         Time.timeScale = 0f;
 
@@ -54,8 +62,13 @@ public class PauseMenu : MonoBehaviour
 
     public void mainMenu()
     {
+        // unfreeze the game
+        Time.timeScale = 1f;
+
         // go back to main menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        isPaused = false;
     }
 
     public void QuitGame()

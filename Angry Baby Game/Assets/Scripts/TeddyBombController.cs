@@ -30,7 +30,7 @@ public class TeddyBombController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && throwEnabled)
+        if (Input.GetMouseButtonDown(0) && throwEnabled && !PauseMenu.isPaused)
         {
             animator.SetBool("throw", true);
             StartCoroutine(DelayThrowBomb());
