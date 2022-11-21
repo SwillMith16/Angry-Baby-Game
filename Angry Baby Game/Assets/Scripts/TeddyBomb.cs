@@ -77,7 +77,7 @@ public class TeddyBomb : MonoBehaviour
         }
 
         // increment score for each building damaged
-        ScoreTracker.scoreCount += colliders.Length;
+        IncrementScore(colliders);
 
         // make bomb disppear
         gameObject.GetComponent<Renderer>().enabled = false;
@@ -87,6 +87,19 @@ public class TeddyBomb : MonoBehaviour
 
         // destroy explosion effect after a delay
         StartCoroutine(DelayEffectDestroy(particleEffect, destroyEffectDelay));
+    }
+
+    void IncrementScore(Collider[] colliders)
+    {
+        // increment score for each building damaged
+        foreach (Collider nearbyCollider in colliders)
+        {
+            if (nearbyCollider.CompareTag("Building"))
+            {
+                Debug.Log(nearbyCollider.gameObject.name);
+                ScoreTracker.scoreCount += colliders.Length;
+            }
+        }
     }
 
     IEnumerator DelayObjectDestroy(Collider[] colliders, float delay)
@@ -110,13 +123,10 @@ public class TeddyBomb : MonoBehaviour
         foreach (Collider nearbyCollider in colliders)
         {
             Rigidbody rb = nearbyCollider.GetComponent<Rigidbody>();
-            if (rb != null)
+            GameObject nearbyObject = nearbyCollider.gameObject;
+            if (rb != null && !nearbyObject.CompareTag("Player"))
             {
-                GameObject nearbyObject = nearbyCollider.gameObject;
-                if (!nearbyObject.CompareTag("Player"))
-                {
-                    Destroy(nearbyObject);
-                }                
+                Destroy(nearbyObject);           
             }
         }
     }

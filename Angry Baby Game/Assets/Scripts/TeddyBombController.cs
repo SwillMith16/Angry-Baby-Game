@@ -14,7 +14,7 @@ public class TeddyBombController : MonoBehaviour
     private Transform cameraTransform;
     private Animator animator;
 
-    public bool throwEnabled;
+    private bool throwEnabled;
     private float throwDelay = 5f;
 
     private AudioSource audioData;
