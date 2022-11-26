@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc947bc8b6d1c664da0fc0581b611165
+guid: 93168110ac849ef4cb3a2969c4d926f7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building_Concrete
+      name: Building_Brick
     second: {fileID: 2100000, guid: b8ddfb845b0faf44281c4fff07939c83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building_Brick_Door
+    second: {fileID: 2100000, guid: d21e5ccc64801ed4ab26b7949c20118f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building_Concrete
+    second: {fileID: 2100000, guid: 09acf1664b62b83479eaa22e174b2958, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building_Concrete_Door
+    second: {fileID: 2100000, guid: 67ff34409fb10444e8c5ea2278648047, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
