@@ -68,10 +68,18 @@ public class TeddyBomb : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
         foreach (Collider nearbyCollider in colliders)
         {
+            // get parent of object
+            Transform parentBuilding = nearbyCollider.gameObject.transform.parent;
+            //GameObject parentBuilding = parentBuildingTransform.gameObject;
+
             // apply explosion force to objects
             Rigidbody rb = nearbyCollider.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                if (rb.CompareTag("Building") && rb.isKinematic)
+                {
+                    removeKinematicStatus(parentBuilding);
+                }
                 rb.AddExplosionForce(explosionForce, transform.position, damageRadius);
             }
         }
@@ -96,7 +104,6 @@ public class TeddyBomb : MonoBehaviour
         {
             if (nearbyCollider.CompareTag("Building"))
             {
-                Debug.Log(nearbyCollider.gameObject.name);
                 ScoreTracker.scoreCount += colliders.Length;
             }
         }
@@ -128,6 +135,17 @@ public class TeddyBomb : MonoBehaviour
             {
                 Destroy(nearbyObject);           
             }
+        }
+    }
+
+    private void removeKinematicStatus(Transform parentBuilding)
+    {
+        // use parent to get all children
+        foreach (Transform buildingCell in parentBuilding)
+        {
+            // deactivate kinematic setting on child
+            Rigidbody cellRb = buildingCell.GetComponent<Rigidbody>();
+            cellRb.isKinematic = false;
         }
     }
 }

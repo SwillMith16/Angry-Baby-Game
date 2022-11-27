@@ -307,7 +307,7 @@ MonoBehaviour:
   delay: 3
   explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   explosionForce: 1500
-  damageRadius: 7
+  damageRadius: 5
   destroyObjectDelay: 2
   destroyEffectDelay: 1.5
   hissingFuse: {fileID: 8300000, guid: 0f02871c71f84ef46a0440aa61b13c88, type: 3}
