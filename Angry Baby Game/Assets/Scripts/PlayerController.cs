@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private PlayerInput playerInput;
     private Vector3 playerVelocity;
+    public Vector3 pos;
     private bool groundedPlayer;
     private Transform cameraTransform;
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        pos = transform.position;
         // keep player grounded
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 
         if (move != Vector3.zero)
         {
