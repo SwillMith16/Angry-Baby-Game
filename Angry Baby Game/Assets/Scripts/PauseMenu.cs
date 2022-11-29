@@ -3,26 +3,37 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
     public GameObject HUD;
+    private PlayerInput playerInput;
+    private InputAction pauseAction;
+    void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        pauseAction = playerInput.actions["Pause"];
+    }
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (pauseAction.triggered)
         {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            isPaused = !isPaused;
+        }
+        
+        if (!isPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 

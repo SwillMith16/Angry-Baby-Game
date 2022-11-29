@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dc477b3a83cfa4eaff6949f502b0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   throwForce: 15
   teddyBombPrefab: {fileID: 1568497657961423186, guid: 0f607b9f32038134aa6a5c75a67b1fda, type: 3}
   bombSpawnPos: {fileID: 4151981054097256895}

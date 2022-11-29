@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSource))]
 public class TeddyBombController : MonoBehaviour
 {
+    public GameObject player;
     public float throwForce = 15f;
     public GameObject teddyBombPrefab;
     public Transform bombSpawnPos;
@@ -19,6 +20,9 @@ public class TeddyBombController : MonoBehaviour
 
     private AudioSource audioData;
 
+    private PlayerInput playerInput;
+    private InputAction shootAction;
+
 
     private void Start()
     {
@@ -26,11 +30,14 @@ public class TeddyBombController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         audioData = GetComponent<AudioSource>();
         throwEnabled = true;
+
+        playerInput = player.GetComponent<PlayerInput>();
+        shootAction = playerInput.actions["Shoot"];
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && throwEnabled && !PauseMenu.isPaused)
+        if (shootAction.triggered && throwEnabled && !PauseMenu.isPaused)
         {
             animator.SetBool("throw", true);
             StartCoroutine(DelayThrowBomb());
