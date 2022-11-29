@@ -76,10 +76,6 @@ public class PauseMenu : MonoBehaviour
         // unfreeze the game
         Time.timeScale = 1f;
 
-        // unlock cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
         // go back to main menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
