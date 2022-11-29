@@ -3418,7 +3418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -730, y: 420}
+  m_AnchoredPosition: {x: -490, y: 285}
   m_SizeDelta: {x: 420, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &289737692
@@ -7016,6 +7016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   rotationSpeed: 5
+  pos: {x: 0, y: 0, z: 0}
   animator: {fileID: 461734642}
 --- !u!143 &633679728
 CharacterController:
